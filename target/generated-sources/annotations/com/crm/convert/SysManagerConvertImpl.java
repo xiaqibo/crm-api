@@ -9,7 +9,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-10-13T22:41:47+0800",
+    date = "2025-10-19T13:47:53+0800",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.16 (Eclipse Adoptium)"
 )
 public class SysManagerConvertImpl implements SysManagerConvert {
