@@ -9,6 +9,7 @@ import com.crm.entity.Customer;
 import com.crm.entity.SysManager;
 import com.crm.mapper.CustomerMapper;
 import com.crm.query.CustomerQuery;
+import com.crm.query.IdQuery;
 import com.crm.security.user.SecurityUser;
 import com.crm.service.CustomerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -114,5 +115,32 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
             }
             baseMapper.updateById(entity);
         }
+    }
+
+    public void removeCustomer(List<Integer> ids) {
+        removeByIds(ids);
+    }
+
+    @Override
+    public void customerToPublicPool(IdQuery idQuery) {
+        Customer customer = baseMapper.selectById(idQuery.getId());
+        if(customer == null){
+            throw new ServerException("客户不存在,无法转入公海");
+        }
+        customer.setIsPublic(1);
+        customer.setOwnerId(null);
+        baseMapper.updateById(customer);
+    }
+
+    @Override
+    public void publicPoolToPrivate(IdQuery idQuery) {
+        Customer customer = baseMapper.selectById(idQuery.getId());
+        if (customer == null) {
+            throw new ServerException("客户不存在,无法转入公海");
+        }
+        customer.setIsPublic(0);
+        Integer ownerId = SecurityUser.getManagerId();
+        customer.setOwnerId(ownerId);
+        baseMapper.updateById(customer);
     }
 }
