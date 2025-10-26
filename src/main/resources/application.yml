@@ -46,7 +46,7 @@ springdoc:
 knife4j:
   enable: true
   setting:
-    language: zh_cn
+    language: zh-CN
   basic:
     enable: true    #开启密码模式
     username: admin   #用户名
@@ -63,5 +63,11 @@ auth:
     - /swagger-ui.html
     - /swagger-ui/**
     - /doc.html
-    - /
-    - /department/** #部门
+    - /                     # 根路径
+
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: ${ALIYUN_OSS_ACCESS_KEY_ID:}
+    accessKeySecret: ${ALIYUN_OSS_ACCESS_KEY_SECRET:}
+    bucketName: zmy-oss123

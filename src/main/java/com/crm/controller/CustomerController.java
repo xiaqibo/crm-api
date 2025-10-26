@@ -27,25 +27,20 @@ import java.util.List;
  * @author crm
  * @since 2025-10-12
  */
-/**
- * 客户管理前端控制器
- */
 @Tag(name = "客户管理")
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("customer")
 @AllArgsConstructor
 public class CustomerController {
-
     private final CustomerService customerService;
 
-    @PostMapping("/page")
+    @PostMapping("page")
     @Operation(summary = "客户列表-分页")
     public Result<PageResult<CustomerVO>> getPage(@RequestBody CustomerQuery query) {
         return Result.ok(customerService.getPage(query));
     }
-
-    @PostMapping("/export")
-    @Operation(summary = "客户列表-导出")
+    @PostMapping("export")
+    @Operation(summary = "导出客户信息")
     public void exportCustomer(@RequestBody CustomerQuery query, HttpServletResponse response) {
         customerService.exportCustomer(query, response);
     }
@@ -60,24 +55,23 @@ public class CustomerController {
     @PostMapping("remove")
     @Operation(summary = "删除客户信息")
     public Result removeCustomer(@RequestBody List<Integer> ids) {
-        if(ids.isEmpty()){
+        if (ids.isEmpty()) {
             throw new ServerException("请选择要删除的客户信息");
         }
         customerService.removeCustomer(ids);
         return Result.ok();
     }
-
     @PostMapping("toPublic")
     @Operation(summary = "转为公海客户")
     public Result customerToPublicPool(@RequestBody @Validated IdQuery idQuery) {
         customerService.customerToPublicPool(idQuery);
         return Result.ok();
     }
-
     @PostMapping("toPrivate")
     @Operation(summary = "领取客户")
     public Result publicPoolToPrivate(@RequestBody @Validated IdQuery idQuery) {
         customerService.publicPoolToPrivate(idQuery);
         return Result.ok();
     }
+
 }

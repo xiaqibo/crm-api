@@ -52,10 +52,13 @@ public class Department {
     @TableField("parent_ids")
     private String parentIds;
 
+    @ApiModelProperty("逻辑删除")
     @TableField(value = "delete_flag", fill = FieldFill.INSERT)
     @TableLogic
     @JsonIgnore
-    private Integer deleteFlag = 0; // 设置默认值
+    private Integer deleteFlag = 0; // 设置默认值，0表示未删除
+
+    // getter/setter方法...
 
 
     @ApiModelProperty("创建时间")

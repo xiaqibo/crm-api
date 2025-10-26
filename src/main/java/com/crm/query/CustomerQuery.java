@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
- * @Author: 夏企博
+ * @Author: zmy
  * @Date: 2025/10/19
  * @Version: 1.0
  */
@@ -23,4 +23,5 @@ public class CustomerQuery extends Query {
     private Integer followStatus;
     @Schema(description = "0-客户列表，1-公海列表")
     private Integer isPublic;
+
 }

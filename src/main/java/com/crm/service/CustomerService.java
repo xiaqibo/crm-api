@@ -9,6 +9,7 @@ import com.crm.vo.CustomerVO;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
+import java.net.http.HttpRequest;
 import java.util.List;
 
 /**
@@ -32,9 +33,9 @@ public interface CustomerService extends IService<Customer> {
      * 导出客户信息
      *
      * @param query
-     * @param httpResponse
+     * @param response
      */
-    void exportCustomer(CustomerQuery query, HttpServletResponse httpResponse);
+    void exportCustomer(CustomerQuery query, HttpServletResponse response);
 
     /**
      * 保存或更新客户信息
@@ -53,7 +54,6 @@ public interface CustomerService extends IService<Customer> {
      * @param idQuery
      */
     void customerToPublicPool(IdQuery idQuery);
-
     /**
      * 领取客户
      * @param idQuery
